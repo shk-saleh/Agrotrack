@@ -1,72 +1,96 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import { useAuth } from '../Context/AuthContext';
+import toast from 'react-hot-toast';
+import { Eye, EyeOff, TrendingUp, Cloud, Users } from 'lucide-react';
 
-export default function SignUpPage() {
-  const [isLogin, setIsLogin] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
+const Signup = () => {
+
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
     password: '',
-    role: 'Admin'
+    role: 'farmer'
   });
+  const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const { signup, googleLogin } = useAuth();
+  const navigate = useNavigate();
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
   };
 
-  const handleSubmit = () => {
-    console.log('Sign up submitted:', formData);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    if (!formData.fullName || !formData.email || !formData.password) {
+      toast.error('Please fill in all fields');
+      return;
+    }
+
+    if (formData.password.length < 6) {
+      toast.error('Password must be at least 6 characters');
+      return;
+    }
+
+    setLoading(true);
+    try {
+      await signup(formData.email, formData.password, formData.fullName, formData.role);
+      toast.success('Account created successfully!');
+      navigate('/dashboard');
+    } catch (error) {
+      toast.error(error.message || 'Failed to create account');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleGoogleSignup = async () => {
+    setLoading(true);
+    try {
+      await googleLogin();
+      toast.success('Account created successfully!');
+      navigate('/dashboard');
+    } catch (error) {
+      toast.error(error.message || 'Failed to sign up with Google');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <div className="min-h-screen flex" style={{ fontFamily: "'Poppins', sans-serif" }}>
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-      `}</style>
-
-      {/* Left Side - Form */}
+    <div className="min-h-screen flex">
+      {/* Left Side - Signup Form */}
       <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-white">
         <div className="w-full max-w-md">
-          {/* Logo */}
+          {/* Logo and Title */}
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold mb-2">
-              <span className="text-gray-800">Agro</span>
-              <span className="text-gray-500">Track</span>
+            <h1 className="text-3xl font-bold text-gray-800">
+              Agro<span className="text-primary-600">Track</span>
             </h1>
-            <p className="text-gray-600 text-sm">Smart Agriculture Market Tracker</p>
+            <p className="text-gray-600 mt-2">Smart Agriculture Market Tracker</p>
           </div>
 
-          {/* Toggle Buttons */}
-          <div className="flex border-2 border-gray-200 rounded-full p-1 mb-8">
-            <button
-              onClick={() => setIsLogin(true)}
-              className={`flex-1 py-3 px-6 rounded-full font-medium transition-all duration-300 ${
-                isLogin
-                  ? 'bg-white shadow-md text-gray-800'
-                  : 'text-gray-500 hover:text-gray-700'
-              }`}
+          {/* Login/Signup Toggle */}
+          <div className="flex border border-gray-300 rounded-lg mb-8">
+            <Link 
+              to="/login" 
+              className="flex-1 py-3 bg-white text-gray-700 rounded-l-lg font-medium text-center hover:bg-gray-50"
             >
               Login
-            </button>
-            <button
-              onClick={() => setIsLogin(false)}
-              className={`flex-1 py-3 px-6 rounded-full font-medium transition-all duration-300 ${
-                !isLogin
-                  ? 'bg-white shadow-md text-gray-800'
-                  : 'text-gray-500 hover:text-gray-700'
-              }`}
-            >
+            </Link>
+            <button className="flex-1 py-3 bg-primary-700 text-white rounded-r-lg font-medium">
               Sign up
             </button>
           </div>
 
-          {/* Form Fields */}
-          <div className="space-y-5">
-            {/* Full Name Field */}
+          {/* Signup Form */}
+          <form onSubmit={handleSubmit} className="space-y-5">
+            {/* Full Name */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Full Name
@@ -75,13 +99,13 @@ export default function SignUpPage() {
                 type="text"
                 name="fullName"
                 value={formData.fullName}
-                onChange={handleInputChange}
+                onChange={handleChange}
                 placeholder="Enter your name..."
-                className="w-full px-4 py-3 bg-gray-100 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:bg-white transition-all"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none"
               />
             </div>
 
-            {/* Email Field */}
+            {/* Email */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Email
@@ -90,13 +114,13 @@ export default function SignUpPage() {
                 type="email"
                 name="email"
                 value={formData.email}
-                onChange={handleInputChange}
+                onChange={handleChange}
                 placeholder="Enter email..."
-                className="w-full px-4 py-3 bg-gray-100 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:bg-white transition-all"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none"
               />
             </div>
 
-            {/* Password Field */}
+            {/* Password */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Password
@@ -106,88 +130,69 @@ export default function SignUpPage() {
                   type={showPassword ? 'text' : 'password'}
                   name="password"
                   value={formData.password}
-                  onChange={handleInputChange}
+                  onChange={handleChange}
                   placeholder="Enter password..."
-                  className="w-full px-4 py-3 bg-gray-100 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:bg-white transition-all pr-12"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
                 >
-                  {showPassword ? (
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                    </svg>
-                  ) : (
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
-                    </svg>
-                  )}
+                  {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                 </button>
               </div>
             </div>
 
-            {/* Roles Dropdown */}
+            {/* Role */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Roles
               </label>
-              <div className="relative">
-                <select
-                  name="role"
-                  value={formData.role}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-3 bg-gray-100 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:bg-white transition-all appearance-none cursor-pointer"
-                >
-                  <option value="Admin">Admin</option>
-                  <option value="Farmer">Farmer</option>
-                  <option value="Buyer">Buyer</option>
-                  <option value="Supplier">Supplier</option>
-                </select>
-                <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </div>
-              </div>
+              <select
+                name="role"
+                value={formData.role}
+                onChange={handleChange}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none bg-white"
+              >
+                <option value="farmer">Farmer</option>
+                <option value="admin">Admin</option>
+              </select>
             </div>
 
             {/* Already have account */}
             <div className="text-center text-sm text-gray-600">
               Already have an account?{' '}
-              <button 
-                onClick={() => setIsLogin(true)}
-                className="text-gray-800 font-medium hover:underline"
-              >
+              <Link to="/login" className="text-primary-600 hover:text-primary-700 font-medium">
                 Sign in
-              </button>
+              </Link>
             </div>
 
-            {/* Sign Up Button */}
+            {/* Signup Button */}
             <button
-              onClick={handleSubmit}
-              className="w-full text-white py-4 rounded-lg font-semibold hover:opacity-90 transition-all duration-200 transform hover:scale-105"
-              style={{backgroundColor: '#085C44'}}
+              type="submit"
+              disabled={loading}
+              className="w-full bg-primary-700 text-white py-3 rounded-lg font-medium hover:bg-primary-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Login
+              {loading ? 'Creating Account...' : 'Login'}
             </button>
 
             {/* Divider */}
-            <div className="relative my-6">
+            <div className="relative">
               <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-gray-200"></div>
+                <div className="w-full border-t border-gray-300"></div>
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="px-4 bg-white text-gray-500">or</span>
+                <span className="px-2 bg-white text-gray-500">or</span>
               </div>
             </div>
 
-            {/* Google Sign In */}
+            {/* Google Signup */}
             <button
               type="button"
-              className="w-full flex items-center justify-center gap-3 py-3 px-4 border-2 border-gray-200 rounded-lg hover:border-gray-300 hover:bg-gray-50 transition-all duration-200"
+              onClick={handleGoogleSignup}
+              disabled={loading}
+              className="w-full flex items-center justify-center gap-2 border border-gray-300 py-3 rounded-lg font-medium hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <svg className="w-5 h-5" viewBox="0 0 24 24">
                 <path
@@ -207,9 +212,9 @@ export default function SignUpPage() {
                   d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
                 />
               </svg>
-              <span className="text-gray-700 font-medium">Continue with google</span>
+              Continue with Google
             </button>
-          </div>
+          </form>
         </div>
       </div>
 
@@ -267,3 +272,5 @@ export default function SignUpPage() {
     </div>
   );
 }
+
+export default Signup;

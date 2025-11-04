@@ -13,7 +13,7 @@ const FarmerSidebar = ({ activeTab, setActiveTab }) => {
     { id: 'market-prices', label: 'Market Prices', icon: TrendingUp },
     { id: 'price-trends', label: 'Price Trends', icon: LineChart },
     { id: 'weather', label: 'Weather', icon: Cloud },
-    { id: 'advice', label: 'Smart Advice', icon: Lightbulb },
+    // { id: 'advice', label: 'Smart Advice', icon: Lightbulb },
     { id: 'forum', label: 'Community', icon: MessageSquare },
   ];
 

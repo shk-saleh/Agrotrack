@@ -17,40 +17,11 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          {/* <Route
-            path="/dashboard"
-            element={
-              <ProtectedRoute>
-                <DashboardLayout>
-                  <DashboardRouter />
-                </DashboardLayout>
-              </ProtectedRoute>
-            }
-          /> */}
-          <Route path="/admin"element={ <Dashbaord />}/>
-
-          {/* <Route
-            path="/forum"
-            element={
-              <ProtectedRoute>
-                <DashboardLayout>
-                  <Forum />
-                </DashboardLayout>
-              </ProtectedRoute>
-            }
-          />
 
           <Route
-            path="/prices"
-            element={
-              <ProtectedRoute allowedRoles={['farmer']}>
-                <DashboardLayout>
-                  <FarmerDashboard />
-                </DashboardLayout>
-              </ProtectedRoute>
-            }
-          /> */}
-
+            path="/dashboard"
+            element={<Dashbaord />}
+          />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </Router>

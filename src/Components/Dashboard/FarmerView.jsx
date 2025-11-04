@@ -7,7 +7,6 @@ import FarmerOverview from './FarmerOverview';
 import MarketPrices from './MarketPrices';
 import PriceTrends from './PriceTrends';
 import WeatherWidget from './WeatherWidget';
-import SmartAdvice from './SmartAdvice';
 import TopBar from './TopBar';
 import { useAuth } from '../../Context/AuthContext';
 
@@ -49,8 +48,6 @@ const FarmerView = () => {
         return <PriceTrends products={products} />;
       case 'weather':
         return <WeatherWidget />;
-      case 'advice':
-        return <SmartAdvice products={products} />;
       default:
         return <FarmerOverview products={products} />;
     }
