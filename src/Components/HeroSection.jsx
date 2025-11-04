@@ -49,7 +49,12 @@ export default function HeroSection() {
           </li>
         </ul>
         <button className="bg-green-900 text-white px-6 py-3 rounded-full font-semibold hover:bg-green-800 transition flex items-center gap-2">
-          Get Started <span>→</span>
+          <a
+              href="/signup"
+              className="text-gray-100 hover:text-green-600 font-medium transition"
+            >
+              Get Started
+            </a> <span>→</span>
         </button>
       </nav>
 
