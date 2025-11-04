@@ -31,9 +31,6 @@ const Dashboard = () => {
       <div className="flex items-center justify-center h-screen bg-gradient-to-br from-primary-50 to-white">
         <div className="text-center">
           <div className="mb-6">
-            <div className="w-20 h-20 bg-gradient-to-br from-primary-600 to-primary-700 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
-              <span className="text-white font-bold text-3xl">A</span>
-            </div>
             <h1 className="text-3xl font-bold text-gray-800">
               Agro<span className="text-primary-600">Track</span>
             </h1>

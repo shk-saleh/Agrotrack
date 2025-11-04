@@ -2,6 +2,6 @@ import React from 'react'
 
 export const Setting = () => {
   return (
-    <div>Setting</div>
+    <div className='p-4'>In progress</div>
   )
 }

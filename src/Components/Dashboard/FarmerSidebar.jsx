@@ -33,13 +33,9 @@ const FarmerSidebar = ({ activeTab, setActiveTab }) => {
 
   return (
     <aside className="w-64 bg-white border-r border-gray-200 flex flex-col">
-      {/* Logo */}
       <div className="h-16 flex items-center px-6 border-b border-gray-200">
-        <div className="w-10 h-10 bg-gradient-to-br from-primary-600 to-primary-700 rounded-lg flex items-center justify-center">
-          <span className="text-white font-bold text-xl">A</span>
-        </div>
         <span className="ml-3 text-xl font-bold text-gray-800">
-          Agro<span className="text-primary-600">Track</span>
+          Agro<span className="text-green-600">Track</span>
         </span>
       </div>
 
@@ -64,7 +60,7 @@ const FarmerSidebar = ({ activeTab, setActiveTab }) => {
                   setActiveTab(item.id);
                 }
               }}
-              className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 mb-1 ${
+              className={`w-full cursor-pointer flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 mb-1 ${
                 isActive
                   ? 'bg-primary-50 text-primary-700 font-medium'
                   : 'text-gray-700 hover:bg-gray-50'

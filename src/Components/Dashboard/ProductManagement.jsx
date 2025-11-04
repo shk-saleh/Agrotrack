@@ -54,7 +54,7 @@ const ProductManagement = ({ products, refreshProducts }) => {
             setEditingProduct(null);
             setShowModal(true);
           }}
-          className="flex items-center gap-2 bg-gray-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors shadow-sm"
+          className="flex items-center gap-2 bg-green-900 cursor-pointer text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors shadow-sm"
         >
           <Plus size={20} />
           Add Product
