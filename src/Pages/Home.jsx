@@ -5,7 +5,7 @@ import WhyChooseSection from '../Components/WhyChooseSection'
 import TestimonialsSection from '../Components/TestimonialsSection'
 import FAQSection from '../Components/FAQSection'
 import CTASection from '../Components/CTASection'
-import Footer from '../Components/Firebase/Footer'
+import Footer from '../Components/Footer'
 
 const HomePage = () => {
   return (
