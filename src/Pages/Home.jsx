@@ -1,20 +1,22 @@
 import React from 'react'
-import Navbar from '../Components/Navbar';
-import HeroSection from '../Components/HeroSection';
-import FeaturesSection from '../Components/FeaturesSection';
-import TestimonialsSection from '../Components/TestimonialsSection';
-import CTASection from '../Components/CTASection';
-import FooterSection from '../Components/FooterSection';
+import HeroSection from '../Components/HeroSection'
+import WhatWeOfferSection from '../Components/WhatWeOfferSection'
+import WhyChooseSection from '../Components/WhyChooseSection'
+import TestimonialsSection from '../Components/TestimonialsSection'
+import FAQSection from '../Components/FAQSection'
+import CTASection from '../Components/CTASection'
+import Footer from '../Components/Firebase/Footer'
 
 const HomePage = () => {
   return (
     <div className="min-h-screen bg-white">
-      <Navbar />
-      <HeroSection />
-      <FeaturesSection />
-      <TestimonialsSection />
-      <CTASection />
-      <FooterSection />
+      <HeroSection/>
+      <WhyChooseSection/>
+      <WhatWeOfferSection/>
+      <TestimonialsSection/>
+      <FAQSection/>
+      <CTASection/>
+      <Footer/>
     </div>
   )
 }
