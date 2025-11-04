@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Eye, EyeOff, TrendingUp, Cloud, Users } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { useAuth } from '../Context/AuthContext';
+import Dashbaord from '../assets/Images/Dashboard.png';
+
 
 export default function LoginPage() {
 
@@ -60,8 +62,8 @@ export default function LoginPage() {
           </div>
 
           {/* Login/Signup Toggle */}
-          <div className="flex border border-gray-300 rounded-lg mb-8">
-            <button className="flex-1 py-3 bg-primary-700 text-white rounded-l-lg font-medium">
+          <div className="flex border p-2 border-gray-300 rounded-lg mb-8">
+            <button className="flex-1 py-3 bg-gray-100 text-gray-700 rounded-l-lg font-medium">
               Login
             </button>
             <Link 
@@ -122,7 +124,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-primary-700 text-white py-3 rounded-lg font-medium hover:bg-primary-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full bg-green-800 text-white py-3 rounded-lg font-medium hover:bg-primary-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? 'Loading...' : 'Login'}
             </button>
@@ -169,7 +171,7 @@ export default function LoginPage() {
       </div>
 
       {/* Right Side - Info Panel */}
-      <div className="hidden lg:flex w-1/2 items-center justify-center p-12" style={{backgroundColor: '#3F5F4E'}}>
+      <div className="hidden lg:flex w-1/2 bg-green-900 items-center justify-center p-12">
         <div className="max-w-lg text-white">
           <h2 className="text-5xl font-bold mb-12 leading-tight">
             Smart Insight for Every Farmer!
@@ -212,12 +214,8 @@ export default function LoginPage() {
 
           {/* Illustration */}
           <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-br from-cyan-300/30 to-transparent rounded-full blur-3xl"></div>
-            <img
-              src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop"
-              alt="Analytics Dashboard"
-              className="relative rounded-2xl shadow-2xl"
-            />
+            <div className="absolute inset-0 rounded-full blur-3xl"></div>
+            <img src={Dashbaord} alt="" /> 
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 export default function HeroSection() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-green-50">
+    <div className="min-h-screen from-gray-50 to-green-50">
       {/* Navbar */}
       <nav className="flex justify-between items-center px-8 py-6 bg-white/95 shadow-sm">
         <div className="text-2xl font-bold text-green-900">
@@ -51,7 +51,7 @@ export default function HeroSection() {
         <button className="bg-green-900 text-white px-6 py-3 rounded-full font-semibold hover:bg-green-800 transition flex items-center gap-2">
           <a
               href="/signup"
-              className="text-gray-100 hover:text-green-600 font-medium transition"
+              className="text-gray-100 hover:text-gray-200 font-medium transition"
             >
               Get Started
             </a> <span>→</span>

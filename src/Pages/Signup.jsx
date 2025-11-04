@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../Context/AuthContext';
 import toast from 'react-hot-toast';
 import { Eye, EyeOff, TrendingUp, Cloud, Users } from 'lucide-react';
+import Dashbaord from '../assets/Images/Dashboard.png';
 
 const Signup = () => {
 
@@ -76,14 +77,14 @@ const Signup = () => {
           </div>
 
           {/* Login/Signup Toggle */}
-          <div className="flex border border-gray-300 rounded-lg mb-8">
+          <div className="flex border p-2 border-gray-300 rounded-lg mb-8 p-1 cursor-pointer">
             <Link 
               to="/login" 
-              className="flex-1 py-3 bg-white text-gray-700 rounded-l-lg font-medium text-center hover:bg-gray-50"
+              className="flex-1 py-3 bg-white text-gray-700 rounded-lg font-medium text-center hover:bg-gray-100"
             >
               Login
             </Link>
-            <button className="flex-1 py-3 bg-primary-700 text-white rounded-r-lg font-medium">
+            <button className="flex-1 py-3 bg-gray-100 text-gray-700 rounded-lg font-medium ">
               Sign up
             </button>
           </div>
@@ -172,9 +173,9 @@ const Signup = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-primary-700 text-white py-3 rounded-lg font-medium hover:bg-primary-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full bg-green-800 cursor-pointer text-white py-3 rounded-lg font-medium hover:bg-primary-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {loading ? 'Creating Account...' : 'Login'}
+              {loading ? 'Creating Account...' : 'Sign Up'}
             </button>
 
             {/* Divider */}
@@ -219,7 +220,7 @@ const Signup = () => {
       </div>
 
       {/* Right Side - Info Panel */}
-      <div className="hidden lg:flex w-1/2 items-center justify-center p-12" style={{backgroundColor: '#3F5F4E'}}>
+      <div className="bg-green-900 hidden lg:flex w-1/2 items-center justify-center p-12">
         <div className="max-w-lg text-white">
           <h2 className="text-5xl font-bold mb-12 leading-tight">
             Smart Insight for Every Farmer!
@@ -262,10 +263,7 @@ const Signup = () => {
 
           {/* Illustration Placeholder */}
           <div className="relative bg-white/10 backdrop-blur-sm rounded-2xl p-8 h-64 flex items-center justify-center">
-            <div className="text-center">
-              <div className="text-6xl mb-4">📊</div>
-              <p className="text-white/80">Analytics Dashboard Preview</p>
-            </div>
+              <img src={Dashbaord} alt="" />
           </div>
         </div>
       </div>

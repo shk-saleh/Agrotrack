@@ -18,13 +18,13 @@ export default function WhatWeOfferSection() {
       id: 3,
       title: "AI-Based Advice",
       description: "Smart farming recommendations",
-      image: "https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=500&h=400&fit=crop"
+      image: "https://d17ocfn2f5o4rl.cloudfront.net/wp-content/uploads/2023/07/BP-AI-in-Agriculture-The-Future-of-Farming_body-im-3.jpg"
     },
     {
       id: 4,
       title: "Community Forum",
       description: "Connect with fellow farmers",
-      image: "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=500&h=400&fit=crop"
+      image: "https://agexplorer.ffa.org/wp-content/uploads/2022/12/careers_photo_58.jpg"
     }
   ];
 
@@ -77,8 +77,8 @@ export default function WhatWeOfferSection() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
               <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                <h3 className="text-xl font-bold mb-2">{offer.title}</h3>
-                <p className="text-green-300 text-sm">{offer.description}</p>
+                <h3 className="text-2xl font-medium mb-2">{offer.title}</h3>
+                <p className="text-gray-300 text-sm">{offer.description}</p>
               </div>
             </div>
           ))}
