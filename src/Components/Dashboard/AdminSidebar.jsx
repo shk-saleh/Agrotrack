@@ -79,7 +79,7 @@ const AdminSidebar = ({ activeTab, setActiveTab }) => {
           className="w-full flex items-center gap-3 px-4 py-3 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
         >
           <LogOut size={20} />
-          <span className="font-medium">Logout</span>
+          <span className="font-medium cursor-pointer">Logout</span>
         </button>
       </div>
     </aside>

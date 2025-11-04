@@ -309,12 +309,12 @@ const WeatherWidget = () => {
       </div>
 
       {/* Current Weather Card */}
-      <div className="bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl shadow-lg p-8 text-white mb-8">
+      <div className="bg-gray-800 rounded-xl shadow-lg p-8 text-white mb-8">
         <div className="flex items-center justify-between mb-4">
           <div>
             <h3 className="text-2xl font-bold mb-1">Current Weather</h3>
-            <p className="text-blue-100">{weather.city}, {weather.country}</p>
-            <p className="text-sm text-blue-200">{weather.localTime}</p>
+            <p className="text-gray-100">{weather.city}, {weather.country}</p>
+            <p className="text-sm text-gray-100">{weather.localTime}</p>
           </div>
           <div className="text-right">
             {getWeatherIcon(weather.current.icon, 80)}
@@ -325,65 +325,102 @@ const WeatherWidget = () => {
           <div>
             <div className="flex items-baseline gap-3 mb-2">
               <span className="text-6xl font-bold">{weather.current.temp}°C</span>
-              <span className="text-2xl text-blue-100">
+              <span className="text-2xl text-gray-100">
                 Feels like {weather.current.feelsLike}°C
               </span>
             </div>
-            <p className="text-xl text-blue-100">{weather.current.condition}</p>
+            <p className="text-xl text-gray-100">{weather.current.condition}</p>
           </div>
         </div>
 
         {/* Weather Details Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-6 border-t border-blue-400">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-6 border-t border-gray-400">
           <div className="flex items-center gap-2">
             <Droplets size={20} />
             <div>
-              <p className="text-sm text-blue-200">Humidity</p>
+              <p className="text-sm text-gray-100">Humidity</p>
               <p className="font-semibold">{weather.current.humidity}%</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
             <Wind size={20} />
             <div>
-              <p className="text-sm text-blue-200">Wind</p>
+              <p className="text-sm text-gray-100">Wind</p>
               <p className="font-semibold">{weather.current.windSpeed} km/h {weather.current.windDir}</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
             <Eye size={20} />
             <div>
-              <p className="text-sm text-blue-200">Visibility</p>
+              <p className="text-sm text-gray-100">Visibility</p>
               <p className="font-semibold">{weather.current.visibility} km</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
             <Thermometer size={20} />
             <div>
-              <p className="text-sm text-blue-200">Pressure</p>
+              <p className="text-sm text-gray-100">Pressure</p>
               <p className="font-semibold">{weather.current.pressure} mb</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
             <Sun size={20} />
             <div>
-              <p className="text-sm text-blue-200">UV Index</p>
+              <p className="text-sm text-gray-100">UV Index</p>
               <p className="font-semibold">{weather.current.uv}</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
             <Cloud size={20} />
             <div>
-              <p className="text-sm text-blue-200">Cloud Cover</p>
+              <p className="text-sm text-gray-100">Cloud Cover</p>
               <p className="font-semibold">{weather.current.cloudCover}%</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
             <CloudRain size={20} />
             <div>
-              <p className="text-sm text-blue-200">Precipitation</p>
+              <p className="text-sm text-gray-100">Precipitation</p>
               <p className="font-semibold">{weather.current.precipitation} mm</p>
             </div>
           </div>
+        </div>
+      </div>
+
+      
+      {/* 5-Day Forecast */}
+      <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100 mb-10">
+        <h3 className="text-xl font-bold text-gray-800 mb-6">3-Day Forecast</h3>
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+          {weather.forecast.map((day, index) => (
+            <div key={index} className="bg-gray-50 rounded-lg p-4 text-center hover:shadow-md transition-shadow">
+              <p className="font-semibold text-gray-800 mb-2">
+                {index === 0 ? 'Today' : day.dayName}
+              </p>
+              <p className="text-xs text-gray-500 mb-3">
+                {new Date(day.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+              </p>
+              <div className="flex justify-center mb-3">
+                {getWeatherIcon(day.icon, 48)}
+              </div>
+              <p className="text-sm font-medium text-gray-700 mb-2">{day.condition}</p>
+              <div className="flex items-center justify-center gap-2 mb-2">
+                <span className="text-xl font-bold text-gray-800">{day.maxTemp}°</span>
+                <span className="text-gray-400">/</span>
+                <span className="text-sm text-gray-600">{day.minTemp}°</span>
+              </div>
+              {day.chanceOfRain > 0 && (
+                <div className="flex items-center justify-center gap-1 text-blue-600 text-xs">
+                  <CloudRain size={14} />
+                  <span>{day.chanceOfRain}%</span>
+                </div>
+              )}
+              <div className="mt-2 pt-2 border-t border-gray-200 text-xs text-gray-600">
+                <p>Humidity: {day.avgHumidity}%</p>
+                <p>Wind: {day.maxWind} km/h</p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
@@ -436,41 +473,6 @@ const WeatherWidget = () => {
         </div>
       </div>
 
-      {/* 5-Day Forecast */}
-      <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
-        <h3 className="text-xl font-bold text-gray-800 mb-6">5-Day Forecast</h3>
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-          {weather.forecast.map((day, index) => (
-            <div key={index} className="bg-gray-50 rounded-lg p-4 text-center hover:shadow-md transition-shadow">
-              <p className="font-semibold text-gray-800 mb-2">
-                {index === 0 ? 'Today' : day.dayName}
-              </p>
-              <p className="text-xs text-gray-500 mb-3">
-                {new Date(day.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
-              </p>
-              <div className="flex justify-center mb-3">
-                {getWeatherIcon(day.icon, 48)}
-              </div>
-              <p className="text-sm font-medium text-gray-700 mb-2">{day.condition}</p>
-              <div className="flex items-center justify-center gap-2 mb-2">
-                <span className="text-xl font-bold text-gray-800">{day.maxTemp}°</span>
-                <span className="text-gray-400">/</span>
-                <span className="text-sm text-gray-600">{day.minTemp}°</span>
-              </div>
-              {day.chanceOfRain > 0 && (
-                <div className="flex items-center justify-center gap-1 text-blue-600 text-xs">
-                  <CloudRain size={14} />
-                  <span>{day.chanceOfRain}%</span>
-                </div>
-              )}
-              <div className="mt-2 pt-2 border-t border-gray-200 text-xs text-gray-600">
-                <p>Humidity: {day.avgHumidity}%</p>
-                <p>Wind: {day.maxWind} km/h</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
     </div>
   );
 };

@@ -131,9 +131,6 @@ const FarmerOverview = ({ products }) => {
             <p className="text-gray-700 mb-3">
               Tomato prices have increased by 15% in Karachi market. Consider selling your harvest soon for maximum profit!
             </p>
-            <button className="px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition-colors text-sm font-medium">
-              View Details
-            </button>
           </div>
         </div>
       </div>
@@ -225,11 +222,8 @@ const FarmerOverview = ({ products }) => {
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center">
-                        <span className="text-primary-700 font-bold">
-                          {product.name.charAt(0)}
-                        </span>
-                      </div>
                       <span className="font-medium text-gray-800">{product.name}</span>
+                      </div>
                     </div>
                   </td>
                   <td className="px-4 py-3">

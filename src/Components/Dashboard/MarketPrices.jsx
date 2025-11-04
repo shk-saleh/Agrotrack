@@ -94,21 +94,16 @@ const MarketPrices = ({ products }) => {
           filteredProducts.map((product) => {
             const priceChange = getPriceChange(product);
             return (
-              <div key={product.id} className="bg-white rounded-xl shadow-sm p-6 border border-gray-100 hover:shadow-md transition-shadow">
+              <div key={product.id} className="bg-white cursor-pointer rounded-xl shadow-sm p-6 border border-gray-100 transition-shadow">
                 {/* Product Header */}
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
-                      <span className="text-primary-700 font-bold text-lg">
-                        {product.name.charAt(0)}
-                      </span>
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-gray-800">{product.name}</h3>
+                    <div className="w-12 h-12 bg-primary-100 rounded-lg flex flex-col items-start justify-start">
+                      <h3 className="font-semibold text-xl text-gray-800">{product.name.toUpperCase()}</h3>
                       <p className="text-sm text-gray-500">{product.city}</p>
                     </div>
                   </div>
-                  <span className="px-3 py-1 rounded-full text-xs font-medium bg-primary-100 text-primary-700 capitalize">
+                  <span className="px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-primary-700 capitalize">
                     {product.category}
                   </span>
                 </div>
@@ -116,7 +111,7 @@ const MarketPrices = ({ products }) => {
                 {/* Price Info */}
                 <div className="mb-4">
                   <div className="flex items-baseline gap-2 mb-2">
-                    <span className="text-3xl font-bold text-gray-800">₨{product.price}</span>
+                    <span className="text-3xl font-bold text-green-700">₨{product.price}</span>
                     <span className="text-gray-500">/ {product.unit}</span>
                   </div>
                   
@@ -131,15 +126,6 @@ const MarketPrices = ({ products }) => {
                     </div>
                   )}
                 </div>
-
-                {/* Action Button */}
-                <button
-                  onClick={() => setSelectedProduct(product)}
-                  className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors"
-                >
-                  <Eye size={18} />
-                  View Details
-                </button>
               </div>
             );
           })
