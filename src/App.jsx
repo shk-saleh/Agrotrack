@@ -5,19 +5,8 @@ import { AuthProvider } from './Context/AuthContext';
 import LandingPage from './Pages/Home';
 import Login from './Pages/Login';
 import Signup from './Pages/Signup';
+import Dashbaord from './Pages/Dashbaord';
 
-
-// import ProtectedRoute from './components/ProtectedRoute';
-// import DashboardLayout from './components/Layout/DashboardLayout';
-
-// // Auth Pages
-// import Login from './components/Auth/Login';
-// import Signup from './components/Auth/Signup';
-
-// // Dashboard Pages
-// import AdminDashboard from './components/Admin/AdminDashboard';
-// import FarmerDashboard from './components/Farmer/FarmerDashboard';
-// import Forum from './components/Forum/Forum';
 
 function App() {
   return (
@@ -37,17 +26,8 @@ function App() {
                 </DashboardLayout>
               </ProtectedRoute>
             }
-          />
-          <Route
-            path="/admin/*"
-            element={
-              <ProtectedRoute allowedRoles={['admin']}>
-                <DashboardLayout>
-                  <AdminDashboard />
-                </DashboardLayout>
-              </ProtectedRoute>
-            }
           /> */}
+          <Route path="/admin"element={ <Dashbaord />}/>
 
           {/* <Route
             path="/forum"
