@@ -1,6 +1,6 @@
 export default function HeroSection() {
   return (
-    <div className="min-h-screen bg-gradient from-gray-50 to-green-50">
+    <div className="min-h-screen">
       {/* Navbar */}
       <nav className="flex justify-between items-center px-8 py-6 bg-white/95 shadow-sm">
         <div className="text-2xl font-bold text-green-900">
@@ -59,7 +59,7 @@ export default function HeroSection() {
       </nav>
 
       {/* Hero Content */}
-      <section className="text-center px-8 py-24 max-w-4xl mx-auto">
+      <section className="text-center bg-gradient-to-b from-gray-100 to-gray-200 px-8 py-42" >
         <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
           Empowering Farmers with Real-Time Market & Weather Insights
         </h1>
