@@ -5,9 +5,10 @@ import toast from 'react-hot-toast';
 import AdminSidebar from './AdminSidebar';
 import StatsOverview from './Stats';
 import ProductManagement from './ProductManagement';
-import Analytics from './Analytics';
 import TopBar from './TopBar';
 import { useAuth } from '../../Context/AuthContext';
+import { Setting } from './Setting';
+
 
 const AdminView = () => {
   const [activeTab, setActiveTab] = useState('overview');
@@ -43,10 +44,10 @@ const AdminView = () => {
         return <StatsOverview products={products} />;
       case 'products':
         return <ProductManagement products={products} refreshProducts={fetchProducts} />;
-      case 'analytics':
-        return <Analytics products={products} />;
+      // case 'analytics':
+      //   return <Analytics products={products} />;
       default:
-        return <StatsOverview products={products} />;
+        return <Setting />;
     }
   };
 
