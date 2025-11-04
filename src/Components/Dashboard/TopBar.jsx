@@ -1,12 +1,16 @@
 import React from 'react';
 import { Bell, User, ChevronDown } from 'lucide-react';
+import { useAuth } from '../../Context/AuthContext';
 
 const TopBar = ({ currentUser }) => {
+
+  const { userRole } = useAuth();
+
   return (
     <header className="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-8">
       <div>
         <h1 className="text-xl font-bold text-gray-800">Dashboard</h1>
-        <p className="text-sm text-gray-500">Welcome back, {currentUser?.displayName || 'Admin'}</p>
+        <p className="text-sm text-gray-500">Welcome back, {currentUser?.displayName || 'User'}</p>
       </div>
 
       <div className="flex items-center gap-4">
@@ -25,7 +29,9 @@ const TopBar = ({ currentUser }) => {
             <p className="text-sm font-semibold text-gray-800">
               {currentUser?.displayName || currentUser?.email}
             </p>
-            <p className="text-xs text-gray-500">Admin</p>
+            <p className="text-xs text-gray-500 capitalize">
+              {userRole || 'User'}
+            </p>
           </div>
           <ChevronDown size={18} className="text-gray-400" />
         </div>

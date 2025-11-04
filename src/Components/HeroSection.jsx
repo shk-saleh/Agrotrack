@@ -1,6 +1,6 @@
 export default function HeroSection() {
   return (
-    <div className="min-h-screen from-gray-50 to-green-50">
+    <div className="min-h-screen bg-gradient from-gray-50 to-green-50">
       {/* Navbar */}
       <nav className="flex justify-between items-center px-8 py-6 bg-white/95 shadow-sm">
         <div className="text-2xl font-bold text-green-900">

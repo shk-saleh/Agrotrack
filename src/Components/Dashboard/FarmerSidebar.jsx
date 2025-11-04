@@ -14,7 +14,7 @@ const FarmerSidebar = ({ activeTab, setActiveTab }) => {
     { id: 'price-trends', label: 'Price Trends', icon: LineChart },
     { id: 'weather', label: 'Weather', icon: Cloud },
     // { id: 'advice', label: 'Smart Advice', icon: Lightbulb },
-    { id: 'forum', label: 'Community', icon: MessageSquare },
+    { id: '/', label: 'Community', icon: MessageSquare },
   ];
 
   const handleLogout = async () => {

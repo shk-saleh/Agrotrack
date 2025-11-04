@@ -1,6 +1,6 @@
 export default function CTASection() {
   return (
-    <div className="bg-gray-50 py-16 px-8">
+    <div className="py-16 px-8">
       <div className="max-w-6xl mx-auto">
         <div className="relative rounded-3xl overflow-hidden shadow-2xl h-96">
           {/* Background Images */}
